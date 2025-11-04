@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-public class FolderSelector
+public static class FolderSelector
 {
     public static string SelectFolder()
 {
@@ -13,7 +13,7 @@ public class FolderSelector
             UseShellExecute = false,
         };
         
-        using (var process = Process.Start(psi))
+        using (var process = Process.Start(psi)!)
         {
             string selectedPath = process.StandardOutput.ReadToEnd().Trim();  
           process.WaitForExit();

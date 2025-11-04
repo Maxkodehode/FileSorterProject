@@ -12,6 +12,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*/home/eikichi/Dev/FileSorter/FileSorter/snippets.md
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

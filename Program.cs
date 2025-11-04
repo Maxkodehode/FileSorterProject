@@ -4,16 +4,19 @@ class Program
 {
     static void Main()
     {
-        string selectedPath = FolderSelector.SelectFolder();
-        
-        if (!string.IsNullOrEmpty(selectedPath))
+    string selectedPath = FolderSelector.SelectFolder();
+    string newDirectory = FolderSelector.SelectFolder();
+
+    if (!string.IsNullOrEmpty(selectedPath) && !string.IsNullOrEmpty(newDirectory))
         {
-            Console.WriteLine($"Selected: {selectedPath}");
-            // Do your operations here
+        Console.WriteLine($"\nSource Selected: {selectedPath}");
+        Console.WriteLine($"Destination Selected: {newDirectory}");  
+
+        FileSorter sorter = new FileSorter(selectedPath, newDirectory);      
         }
-        else
+    else
         {
-            Console.WriteLine("No folder selected.");
+                Console.WriteLine("\nOperation cancelled: One or both folders were not selected.");
         }
     }
 }
