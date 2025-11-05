@@ -12,9 +12,6 @@ public class FileSorter
         _destinationDirectory = newDirectory;
     }
 
-
-
-
     public void SortFiles()
     {
         try
@@ -29,8 +26,6 @@ public class FileSorter
                 if (string.IsNullOrEmpty(extension)) continue;
 
                 string folderName = extension.TrimStart('.').ToUpper();
-
-
 
 
 

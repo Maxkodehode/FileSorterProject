@@ -10,19 +10,18 @@ class Program
 
 
 
-    if (!string.IsNullOrEmpty(selectedPath) && !string.IsNullOrEmpty(newDirectory))
+        if (!string.IsNullOrEmpty(selectedPath) && !string.IsNullOrEmpty(newDirectory))
         {
-        Console.WriteLine($"\nSource Selected: {selectedPath}");
-        Console.WriteLine($"Destination Selected: {newDirectory}");
+            Console.WriteLine($"\nSource Selected: {selectedPath}");
+            Console.WriteLine($"Destination Selected: {newDirectory}");
 
-        FileSorter sorter = new FileSorter(selectedPath, newDirectory);
-        Console.WriteLine($"Starting from the '{selectedPath}' to destination folder in '{newDirectory}'...");
-        sorter.SortFiles();
-             
+            FileSorter sorter = new FileSorter(selectedPath, newDirectory);
+            Console.WriteLine($"Starting from the '{selectedPath}' to destination folder in '{newDirectory}'...");
+            sorter.SortFiles();
         }
-    else
-        {
 
+        else
+        {
             Console.WriteLine("\n--- Directory Selection Status ---\n");
             Console.WriteLine("Selection was canceled, or the Zenity dependency is missing.");
 
