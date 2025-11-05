@@ -3,40 +3,99 @@ using System.IO;
 
 public class FileSorter
 {
-    // 1. Fields: Store the paths so all methods in this class can use them.
     private readonly string _sourcePath;
     private readonly string _destinationDirectory;
 
-    // 2. Constructor: Only responsible for initializing the fields.
     public FileSorter(string sourcePath, string newDirectory)
     {
-        // Assign the constructor arguments to the private fields.
         _sourcePath = sourcePath; 
         _destinationDirectory = newDirectory;
     }
 
-    // 3. Method: Contains the actual operation/logic.
-    public void SortFiles() 
+
+
+
+    public void SortFiles()
     {
         try
         {
-            // Now use the fields (_sourcePath) which were set in the constructor
-            var filesToProcess = Directory.EnumerateFiles(_sourcePath); 
+            var filesToProcess = Directory.EnumerateFiles(_sourcePath);
 
             foreach (string filePath in filesToProcess)
             {
-                // ... The rest of your existing sorting logic goes here ...
                 string extension = Path.GetExtension(filePath);
+
+                // If statement so we ignore files with no extension, folders.
                 if (string.IsNullOrEmpty(extension)) continue;
 
                 string folderName = extension.TrimStart('.').ToUpper();
-                // Use the field _destinationDirectory here
+
+
+
+
+
+                //---Grouping similar filetypes together.
+                switch (folderName)
+                {
+                    case "JPG":
+                    case "WEBP":
+                    case "PNG":
+                    case "JPEG":
+
+                        folderName = "IMAGES";
+                        break;
+
+                    case "PDF":
+                    case "TXT":
+                    case "DOC":
+                    case "DOCX":
+                    case "XLS":
+                    case "XLSX":
+                    case "PPT":
+                    case "PPTX":
+                    case "RFT":
+
+                        folderName = "DOCUMENTS";
+                        break;
+
+                    case "MP4":
+                    case "MOV":
+                    case "WMV":
+                    case "AVI":
+                    case "MKV":
+                    case "FLV":
+
+                        folderName = "VIDEOS";
+                        break;
+
+                    case "MP3":
+                    case "WAV":
+                    case "FLAC":
+                    case "M4A":
+                    case "OGG":
+                    case "WMA":
+
+                        folderName = "AUDIO";
+                        break;
+
+                    default:
+                        break;
+                }
+                
+
+
+
+                //Creating the path and the sub-directory.
                 string destinationDir = Path.Combine(_destinationDirectory, folderName);
 
                 if (!Directory.Exists(destinationDir))
                 {
                     Directory.CreateDirectory(destinationDir);
                 }
+                
+
+                
+                //Getting the file name and checking for duplicate names and append a number to it, e.g. filename(2)
                 string fileName = Path.GetFileName(filePath);
                 string baseFileName = Path.GetFileNameWithoutExtension(filePath);
 
@@ -50,6 +109,9 @@ public class FileSorter
                     counter++;
                 }
 
+
+
+            //Moving the files into their designated directories
                 File.Move(filePath, destinationPath);
             }
         }
