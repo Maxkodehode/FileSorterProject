@@ -6,13 +6,15 @@
 # dotenv files
 .env
 
+# Documentation to ignore
+snippets.md
+
 # User-specific files
 *.rsuser
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-*/home/eikichi/Dev/FileSorter/FileSorter/snippets.md
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
